@@ -24,6 +24,7 @@ class RegiserSever:
         self.req = req  # fastapi request
 
         self.register_global_logger()  # 注册日志处理记录初始化信息
+        self.register_global_exception(app=self.app)  # 注册全局异常捕获信息
         self.register_global_cors(app=self.app)  # 全局配置跨域设置
         self.register_global_middleware(app=self.app)  # 注册全局中间件的注册
         self.register_global_ext_plugs(app=self.app)  # 注册所有自定义的或者第三的扩展插件
@@ -45,6 +46,16 @@ class RegiserSever:
         # 引入函数和对应的日对象-在当前的APPS目录下建立日志收集管理目录
         from apps.ext.logger.logger_config import creat_customize_log_loguru
         creat_customize_log_loguru()
+
+    @staticmethod
+    def register_global_exception(app):
+        """
+        # 注册全局异常捕踪信息
+        :return:
+        """
+        # 引入函数和对应的日对象-在当前的APPS目录下建立日志收集管理目录
+        from apps.ext.exceptions import ApiExceptionHandler
+        ApiExceptionHandler().init_app(app=app)
 
     def register_global_app_contexr_logger_route(self):
         """
