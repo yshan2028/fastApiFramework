@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
 
     async def main():
-        results = await async_client.request(api_url='http://127.0.0.1:8080/check', islogrecord=False)
+        results = await async_client.request(api_url='http://127.0.0.1:9080/check', islogrecord=False)
         print(results)
 
 
