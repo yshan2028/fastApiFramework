@@ -63,7 +63,7 @@ class AsynClientSession:
                                 'headers': str(headers) if headers else '',
                                 'params': parse_qs(str(params)),
                                 'state_code': str(resp.status),
-                                'result': response,
+                                'data': response,
                             }
                             await ContextLogerRoute.async_trace_add_log_record(self.app.state.curr_request, event_type='Third party interface', msg=info_interface)
 
