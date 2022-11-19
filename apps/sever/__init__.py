@@ -108,10 +108,6 @@ class RegiserSever:
         from apps.ext.middleware.global_request import GlobalQuestyMiddleware
         app.add_middleware(GlobalQuestyMiddleware)
 
-        # 如果是也要记录用户提交的参数信息的是错误的情况也好分析的，把日志放最外层
-        from apps.ext.middleware.global_error import GlobalErrorMiddleware
-        app.add_middleware(GlobalErrorMiddleware)
-
     @staticmethod
     def register_global_ext_plugs(app):
         """
