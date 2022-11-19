@@ -53,7 +53,7 @@ class GlobalErrorMiddleware(BaseHTTPMiddleware):
             pass
         elif isinstance(exc.raw_errors[0].exc, pydantic.errors.MissingError):
             pass
-        return ParameterException(http_status_code=400, api_code=400, message='参数校验错误', result={
+        return ParameterException(http_status_code=400, api_code=400, message='参数校验错误', data={
             "detail": exc.errors(),
             "body": exc.body
         })
