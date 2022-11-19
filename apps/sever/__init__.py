@@ -34,6 +34,8 @@ class RegiserSever:
         self.register_global_app_contexr_logger_route()  # app注册的路由也加上日志记录
         self.register_global_health_check(app=self.app, req=self.req)  # 默认注册开启健康检测的URL检测
 
+        self.register_global_include_routes(app=self.app)  # 批量导入注册路由
+
     @staticmethod
     def register_global_logger():
         """
@@ -117,3 +119,14 @@ class RegiserSever:
 
         # 创建队列
         # sync_rabbit_client.creat_dead_exchange_and_queue()
+
+    @staticmethod
+    def register_global_include_routes(app):
+        """
+        导入路由模块
+        :param app:
+        :return:
+        """
+        pass
+        from apps.modules import modeles_routes
+        modeles_routes(app=app)
