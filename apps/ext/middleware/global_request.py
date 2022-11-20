@@ -20,5 +20,8 @@ class GlobalQuestyMiddleware(BaseHTTPMiddleware):
         # 给当前的app这是当前的请求上下文对象
         request.app.state.curr_request = request
         response = await call_next(request)
+        # 请求头增加traceid 参数,方便日志最终
+        if hasattr(request.state, 'traceid'):
+            response.headers["traceid"] = getattr(request.state, 'traceid')
         # 请求之后响应体
         return response
