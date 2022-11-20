@@ -182,7 +182,7 @@ class ContextLogerRoute(APIRoute):
         # 如果响应图的类型，仅仅记录字符串类型的结尾的日志信息
         if 'image' not in response.media_type and hasattr(request.state, 'traceid'):
             start_time = getattr(request.state, 'start_time')
-            end_time = f'{(perf_counter() - start_time):.2f}'
+            end_time = f'{(perf_counter() - start_time)*1000:.2f}'
             # 获取响应报文信息内容
             rsp = None
             if isinstance(response, Response):
@@ -190,7 +190,7 @@ class ContextLogerRoute(APIRoute):
             log_msg = {
                 # 记录请求耗时
                 "status_code": response.status_code,
-                'cost_time': end_time,
+                'cost_time': end_time+'ms',
                 #  记录请求响应的最终报文信息--eval的作用是去除相关的 转义符号 "\"ok\""===》ok
                 'response': json_to_dict(rsp)
             }
