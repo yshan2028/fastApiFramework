@@ -10,8 +10,19 @@
 ------------------------------------
 @ModifyTime     :  
 """
+from typing import Union
+
+from pydantic import BaseModel
+
 from apps.ext.response.json_response import Success
 from apps.modules.user.api import bp as lantu
+
+
+class Item(BaseModel):
+    name: str
+    description: Union[str, None] = None
+    price: float
+    tax: Union[float, None] = None
 
 
 @lantu.get('/list', summary='用户列表')
@@ -20,3 +31,8 @@ def user_list():
         'name': '张三'
     }
     return Success(data=data)
+
+
+@lantu.post('/add', summary='用户列表')
+def user_add(item: Item):
+    return Success(data=item)
