@@ -33,6 +33,13 @@ class ApiExceptionHandler:
 
     @staticmethod
     def error_map(error_type: str, field: str, msg: str = None):
+        """
+         http 参数异常错误函数
+        @param error_type:
+        @param field:
+        @param msg:
+        @return:
+        """
         if "missing" in error_type:
             return f"缺少参数: {field}"
         elif "params" in error_type:
@@ -56,7 +63,7 @@ class ApiExceptionHandler:
         app.add_exception_handler(RequestValidationError, handler=self.validation_exception_handler)
 
     async def validation_exception_handler(self, request: Request, exc: RequestValidationError):
-        # print("参数提交异常错误selfself", exc.errors()[0].get('loc'))
+        # print("参数提交异常错误self", exc.errors()[0].get('loc'))
         # 路径参数错误
         # 判断错误类型
         if isinstance(exc.raw_errors[0].exc, IntegerError):
