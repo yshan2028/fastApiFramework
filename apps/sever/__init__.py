@@ -16,26 +16,31 @@ from starlette.middleware.cors import CORSMiddleware
 
 class RegiserSever:
 
-    def __init__(self, app, req):
+    def __init__(self, app, request):
         """
         初始化 常用的服务
         """
         self.app = app  # fastapi app
-        self.req = req  # fastapi request
+        self.request = request  # fastapi request
 
         self.register_global_logger()  # 注册日志处理记录初始化信息
         self.register_global_exception(app=self.app)  # 注册全局异常捕获信息
         self.register_global_cors(app=self.app)  # 全局配置跨域设置
         self.register_global_middleware(app=self.app)  # 注册全局中间件的注册
+        self.register_global_event()  # 注册全局的启动和关闭事件
         self.register_global_ext_plugs(app=self.app)  # 注册所有自定义的或者第三的扩展插件
 
         # =====================PS=====================
         # 如果需要开启日志记录--优先级最高！必须在如有开始注册之前进行注册
         # =====================PS=====================
         self.register_global_app_contexr_logger_route()  # app注册的路由也加上日志记录
-        self.register_global_health_check(app=self.app, req=self.req)  # 默认注册开启健康检测的URL检测
+        self.register_global_health_check(app=self.app, req=self.request)  # 默认注册开启健康检测的URL检测
 
+        # =====================PS=====================
+        # 路由相关注册
+        # =====================PS=====================
         self.register_global_include_routes(app=self.app)  # 批量导入注册路由
+        self.register_global_websocket_router()  # 批量注册websocket路由
 
     @staticmethod
     def register_global_logger():
@@ -137,3 +142,9 @@ class RegiserSever:
         pass
         from apps.modules import modeles_routes
         modeles_routes(app=app)
+
+    def register_global_event(self):
+        pass
+
+    def register_global_websocket_router(self):
+        pass
