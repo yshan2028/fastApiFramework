@@ -31,6 +31,19 @@ class ApiExceptionHandler:
         if app is not None:
             self.init_app(app)
 
+    @staticmethod
+    def error_map(error_type: str, field: str, msg: str = None):
+        if "missing" in error_type:
+            return f"缺少参数: {field}"
+        elif "params" in error_type:
+            return f"参数: {field}不规范，原因 {'msg' if msg is None else msg}"
+        elif "not_allowed" in error_type:
+            return f"参数: {field} 类型不正确，原因 {'msg' if msg is None else msg}"
+        elif "type_error" in error_type:
+            return f"参数: {field} 类型不合法, 原因： {'msg'  if msg is None else msg}"
+        else:
+            return f"出错啦，{'msg' if msg is None else msg}"
+
     def init_app(self, app: FastAPI):
         """
         初始化异常错误判断
@@ -42,8 +55,7 @@ class ApiExceptionHandler:
         app.add_exception_handler(StarletteHTTPException, handler=self.http_exception_handler)
         app.add_exception_handler(RequestValidationError, handler=self.validation_exception_handler)
 
-    @staticmethod
-    async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    async def validation_exception_handler(self, request: Request, exc: RequestValidationError):
         # print("参数提交异常错误selfself", exc.errors()[0].get('loc'))
         # 路径参数错误
         # 判断错误类型
@@ -51,7 +63,7 @@ class ApiExceptionHandler:
             pass
         elif isinstance(exc.raw_errors[0].exc, MissingError):
             pass
-        return ParameterException(data={"detail": exc.errors(), "body": exc.body })
+        return ParameterException(data=self.error_map(exc.errors()[0]["type"], exc.errors()[0].get("loc", ['unknown'])[-1], exc.errors()[0].get("msg")) if len(exc.errors()) > 0 else "参数解析失败")
 
     @staticmethod
     async def http_exception_handler(request: Request, exc: StarletteHTTPException):

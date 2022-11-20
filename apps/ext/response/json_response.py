@@ -80,7 +80,7 @@ class ParameterException(ApiResponse):
     http_status_code = 400  # 参数错误的请求
     api_code = 20031  # 参数错误, 'Params error'
     data = {}
-    message = '参数校验错误,请检查提交的参数信息'
+    message = '参数校验错误'
     success = False
 
 
@@ -112,7 +112,7 @@ class MethodnotallowedException(ApiResponse):
     http_status_code = 405  # 方法不允许
     api_code = 20035
     data = {}
-    message = '不允许使用此方法提交访问'
+    message = '方法不允许'
     success = False
 
 
@@ -120,7 +120,7 @@ class OtherException(ApiResponse):
     http_status_code = 400  # 未知错误的请求
     api_code = 99999
     data = {}
-    message = '未知的其他HTTPEOOER异常'
+    message = '未知的异常'
     success = False
 
 
