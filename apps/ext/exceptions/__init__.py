@@ -86,16 +86,24 @@ class ApiExceptionHandler:
             return BadrequestException(message=exc.detail)
 
     @staticmethod
-    async def all_exception_handler(self, request: Request, exc: Exception):
+    async def all_exception_handler(request: Request, exc: Exception):
         """
         全局的捕获抛出的HTTPException异常，注意这里需要使用StarletteHTTPException的才可以
-        :param self:
         :param request:
         :param exc:
         :return:
         """
         if isinstance(exc, StarletteHTTPException) or isinstance(exc, FastapiHTTPException):
-            self.http_exception_handler(request, exc)
+            if exc.status_code == 405:
+                return MethodnotallowedException()
+            if exc.status_code == 404:
+                return NotfoundException()
+            elif exc.status_code == 429:
+                return LimiterResException()
+            elif exc.status_code == 500:
+                return InternalErrorException()
+            elif exc.status_code == 400:
+                return BadrequestException(message=exc.detail)
         else:
             # 其他内部的异常的错误拦截处理
             logger.exception(exc)
