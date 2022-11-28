@@ -1,3 +1,4 @@
+
 ### 项目介绍
 
 - 名称：FastAPIFramework
@@ -13,20 +14,17 @@
 
 ### 项目结构
 
+### 项目运行
 
-
-
-
-#### 项目运行
 ##### 1. 安装依赖
 ```shell
 pip install -r requirements.txt
 ```
+
 ##### 2. 运行项目
 ```shell
 python main.py
 ```
-
 
 ### 软件架构
 1、主要功能点有:
@@ -53,13 +51,11 @@ python main.py
 
     扩展-第三方插件-消息队列的整合
 
-
 ### 项目参考
 1、 [fastapi_skeletons](https://gitee.com/xiaozhong1988/fastapi_skeletons)
 
 2、[pity](https://github.com/wuranxu/pity)
 
-
-#### 版权
+### 版权
 1、要求
     使用该项目请遵守 Apache-2.0 许可证，不得在未同意下使用商业行为；
