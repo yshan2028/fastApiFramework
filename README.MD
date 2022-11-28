@@ -1,5 +1,7 @@
 # 一、项目介绍
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7bf9cee8308940448d621604a45cce90)](https://app.codacy.com/gh/462548187/fastApiFramework?utm_source=github.com&utm_medium=referral&utm_content=462548187/fastApiFramework&utm_campaign=Badge_Grade_Settings)
+
 - 名称：FastAPIFramework
 - 版本：0.0.1
 - 作者：Yingqing Shan
