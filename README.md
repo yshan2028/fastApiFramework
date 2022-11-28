@@ -1,4 +1,4 @@
-### 一、项目介绍
+### 项目介绍
 
 - 名称：FastAPIFramework
 - 版本：0.0.1
@@ -11,13 +11,13 @@
     为解决以上问题，开发一套类似Java的Spring的解决方案的框架，参照多位作者，整合并开发出这个FastApiFramework的框架，希望能解决像我困扰的同学。
     如果你什么好的建议，欢迎一起学习交流！
 
-### 二、 项目结构
+### 项目结构
 
 
 
 
 
-#### 三、项目运行
+#### 项目运行
 ##### 1. 安装依赖
 ```shell
 pip install -r requirements.txt
@@ -28,8 +28,8 @@ python main.py
 ```
 
 
-### 四、软件架构
-##### 1、主要功能点有:
+### 软件架构
+1、主要功能点有:
 
     项目配置文件处理
 
@@ -54,12 +54,12 @@ python main.py
     扩展-第三方插件-消息队列的整合
 
 
-### 五、项目参考
+### 项目参考
 1、 [fastapi_skeletons](https://gitee.com/xiaozhong1988/fastapi_skeletons)
 
 2、[pity](https://github.com/wuranxu/pity)
 
 
-#### 六、版权
+#### 版权
 1、要求
     使用该项目请遵守 Apache-2.0 许可证，不得在未同意下使用商业行为；
